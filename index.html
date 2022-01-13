@@ -7,11 +7,26 @@
     <title>Rock Paper Scissors is fun!</title>
 </head>
 <body>
+    <h1>Time to play a game!</h1>
+    <div id="results"></div>
+    <div id="log"></div>
+    <button id="Rock">Rock</button>
+    <button id="Paper">Paper</button>
+    <button id="Scissors">Scissors</button>
     <script>
         let playerSelection;
         let computerSelection;
         let playerScore = 0;
         let computerScore = 0;
+        const results = document.querySelector('#results');
+        const log = document.querySelector("#log");
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            playRound(button.id, computerPlay());
+        });
+        });
 
         //Generates a random outcome for what the computer will throw
         function computerPlay() {
@@ -45,6 +60,8 @@
             } else {
                 result = "Its a tie! You both played " + playerSelection + "!";
             }
+            results.textContent= "Player score: " + playerScore + " Computer Score: " + computerScore + " ";
+            log.textContent= result;
             return result;
 
         }
@@ -65,9 +82,9 @@
             }
         }
 
-        game();
+        //game();
 
     </script>
-    <h1>Time to play a game!</h1>
+    
 </body>
 </html>
