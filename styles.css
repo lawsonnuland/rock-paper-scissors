@@ -1,0 +1,22 @@
+body {
+    text-align: center;
+    background-color: lightgray;
+}
+
+#buttons {
+    padding: 10px;
+}
+
+#results {
+    border:black solid 2px;
+    padding: 5px;
+}
+
+#log {
+    padding: 10px;
+}
+
+button {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    padding: 5px;
+}

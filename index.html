@@ -5,14 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors is fun!</title>
+    <link rel="stylesheet" href="styles.css" >
 </head>
 <body>
     <h1>Time to play a game!</h1>
-    <div id="results"></div>
+    <div id="results">Score Board</div>
     <div id="log"></div>
-    <button id="Rock">Rock</button>
-    <button id="Paper">Paper</button>
-    <button id="Scissors">Scissors</button>
+    <div id="buttons">
+        <button id="Rock">Rock</button>
+        <button id="Paper">Paper</button>
+        <button id="Scissors">Scissors</button>
+    </div>
     <script>
         let playerSelection;
         let computerSelection;
@@ -25,6 +28,7 @@
         buttons.forEach((button) => {
         button.addEventListener('click', () => {
             playRound(button.id, computerPlay());
+            winnerCheck();
         });
         });
 
@@ -52,7 +56,7 @@
             playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
             let result;
             if ((playerSelection === "Rock" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Paper") || (playerSelection === "Paper" && computerSelection === "Rock")) {
-                result = "You win! " + playerSelection + " beats " + computerSelection;
+                result = "You win! " + playerSelection + " beats " + computerSelection + "!";
                 playerScore++;
             } else if ((playerSelection === "Rock" && computerSelection === "Paper") || (playerSelection === "Scissors" && computerSelection === "Rock") || (playerSelection === "Paper" && computerSelection === "Scissors")) {
                 result = "You lose!";
@@ -67,22 +71,19 @@
         }
 
         //Runs the game 5 times and displays winner overall
-        function game() {
-            for (let i = 0; i<5; i++) {
-                computerSelection = computerPlay();
-                playerSelection = prompt("Input rock, paper, or scissors");
-                console.log(playRound(playerSelection, computerSelection));
-            }
-            if (playerScore > computerScore) {
-                console.log("You won the tournament! Congrats!");
-            } else if (computerScore > playerScore) {
-                console.log("The computer won! Learn to play better!");
-            } else {
-                console.log("Somehow you tied! Weird!");
+        function winnerCheck() {
+            if (computerScore > 4 || playerScore > 4) {
+                if (playerScore > computerScore) {
+                    log.textContent += " You won the tournament! Congrats!";
+                } else if (computerScore > playerScore) {
+                    log.textContent += " The computer won! Learn to play better!";
+                } else {
+                    log.textContent +=" Somehow you tied! Weird!";
+                }
+                computerScore = 0;
+                playerScore = 0;
             }
         }
-
-        //game();
 
     </script>
     
